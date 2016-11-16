@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LlamAttire 🎩</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="magic.js"></script>
+</head>
+<body>
+
+<div id="welcome-rapper">
+<BR></BR><button id="welcome-message">Hello there, is it your first time stepping in? Hope you enjoy your stay.</button>
+</div>
+
+<h1>
+	Welcome to LlamAttire. Where the finest of the fine get their attire. 
+</h1>
+
+	<p>
+		Thanks for stopping by. Perhaps you're looking for our fine collection? Well, you'll just have to wait a bit longer until we can stock our inventory. Until next time. 
+	</p>
+
+
+<section class="navbar">
+<h2>
+Navigation
+
+</h2>
+	<p><a href="our_models.html"> Our Models</a></p>
+	<p><a href="our_story.html"> Our Story</a></p>
+	<p><a href="form.html"> Form Testing</a></p>
+	
+<h2>Purchase</h2>
+	<form action="/purchase" method="POST" id="payment-form">
+		 
+		 <span class="payment-errors" color="red"></span>
+
+		 <div class="form-row">
+		    <label>
+		      <span>Email</span>
+	      	  <% @products.each do |product| %>
+			      <p><input type="checkbox" class="product-checks" id="product_<%= product['id'] %>" value="<%= product['id'] %>" data-amount=<%= product['amount'].to_i %>>
+			      <label class="product-labels" for="product_<%= product['id'] %>">
+			      <%= product['description'] %>
+			      ($<%= product['amount'].to_i/100 %>)
+			      </label>
+			      </p>
+
+		       <% end %> 
+		    </label>
+		  </div>
+		<span id="cart-total">HELLO</span>
+  	  	<input type="submit" class="submit" value="Submit Payment">
+
+
+  	  	
+  	<form action="/purchase" method="POST">
+	  <script
+	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+	    data-key="pk_test_zdQoXfpUzWPgsEn8v4z0wN5L"
+	    data-image="http://images5.fanpop.com/image/photos/30700000/Calvin-calvin-and-hobbes-30770693-200-200.png"
+	    data-name="Stripe.com"
+	    data-description="My test thang"
+	    data-amount="2000"
+	    data-locale="auto">
+	  </script>
+</form>
+	</form>
+<h2>
+	External Resources
+</h2>
+
+
+	<ul>
+		<li><a href="https://www.facebook.com/llama.fairtrade.7/"> <b>Llama</b> Fair Trade Working Group</a></li>
+		<li><a href="https://twitter.com/llamafairtrade"> Twitter Stuff</a></li>
+		<li><a href="https://www.buzzfeed.com/summeranne/10-llamas-who-wish-they-were-models"> Buzzfeed <b>Llamas</b></a></li>
+		<li><a href="http://www.bing.com/search?q=llama%20attire"> Want to find out even more <b>Llamas</b>?</a></li>
+	</ul>
+</section>
+
+<section class="bod">
+<h2>
+Reasons to support fair-trade Llama Attire:
+</h2>
+<ol>
+<li>Llamas are naturally fabulous. They don't need no synthetic help. </li>
+<li>Llamas are social creatures. They always retweet and like. They know fake fashion when they see it.</li>
+<li>The suns rays are the harshest in the Andes, but a bowler's never looked better!</li>
+</ol>
+
+<p>
+<div class="tongue-container">
+<img id="llama-tongue" src="images/llama-bowler.jpg" alt="llama bowler picture">
+	<div class="centered-button"><button id="secret-button"></button></div>
+
+</div>
+</p>
+
+</section>
+<img id="llama-party" src="images/llama-party.gif"> 
+</body>
+</html>

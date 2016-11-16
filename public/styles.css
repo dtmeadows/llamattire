@@ -1,0 +1,95 @@
+section.navbar {
+	width: 30%;
+	float: left;
+	display: block;
+	min-width: 200px;
+}
+
+section.bod {
+	width: 70%;
+	float: left;
+	display: block;
+	min-width: 300px;
+
+}
+
+.product-labels{
+	color: #241B04;
+	background-color: yellow;
+}
+
+h1, h2, h3 {
+	background-color: #705E2C;
+	border: 5px solid #3D3419;
+	color: white;
+	font-style: italic;
+	padding: 20px;
+	margin: 10px;
+	;
+
+}
+
+body {
+	background-color: linen;
+	font-family: "Helvetica";
+	padding: 20px;
+	color: #241B04;
+	text-align: center;
+	margin: auto;
+
+	min-width: 300px;
+	max-width: 960px;
+}
+
+
+#llama-tongue {
+	height: auto;
+	max-width: 40%;
+}
+
+div.para {
+	background-color: white;
+	border: 20px solid #241B04;
+	color: #3D3419;
+	padding: 20px;
+}
+
+ol, ul {
+	text-align: left;
+}
+
+
+#welcome-message {
+	display: none;
+	background-color: #241B04; 
+    border: none;
+    color: linen;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin: auto;
+    cursor: crosshair;
+}
+
+#welcome-rapper {
+	height: 100px;
+}
+
+#secret-button {
+	background-color: linen; 
+	height: 30px;
+	width: 30px;
+	border: none;
+}
+
+#llama-party {
+	display: none;
+	position: left;
+	margin: auto;
+}
+
+
+
+
