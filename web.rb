@@ -1,8 +1,10 @@
-require_relative 'stripe_keys'
 require 'sinatra'
 require 'stripe'
 require 'sqlite3'
 require 'json'
+require 'rest-client'
+
+require_relative 'stripe_keys'
 
 Stripe.api_key = $PRIVATE_TEST_KEY
 
@@ -57,9 +59,27 @@ post '/purchase' do
     "Charge declined"
   end
 
+end 
+
+#endpoint for Stripe Connect Oauth
+post '/connect' do 
+  #gets two params from Stripe OAUTH
+  scope = params[:scope]
+  auth_code = params[:AUTHORIZATION_CODE]
+
+  #stores params unnecessarily in a db 
+
+  db = SQLite3::Database.new("stripe_store.db")
+  db.execute("Insert INTO Accounts (authorization_code) VALUES (?)", [auth_code])
+  p scope
+  p auth_code 
+
+  #creates account with Stripe 
 
 end
 
 get '/purchase_confirmation' do
   "Thank you for your purchase."
 end
+
+
