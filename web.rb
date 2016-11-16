@@ -62,10 +62,10 @@ post '/purchase' do
 end 
 
 #endpoint for Stripe Connect Oauth
-post '/connect' do 
+get '/connect' do 
   #gets two params from Stripe OAUTH
   scope = params[:scope]
-  auth_code = params[:AUTHORIZATION_CODE]
+  auth_code = params[:code]
 
   #stores params unnecessarily in a db 
 
@@ -76,10 +76,18 @@ post '/connect' do
 
   #creates account with Stripe 
 
+  response = RestClient.post 'https://connect.stripe.com/oauth/token', {
+    client_secret: $PRIVATE_TEST_KEY,
+    code: auth_code, 
+    grant_type: 'authorization_code'}
+  p response.to_s
+  "Jen this totally worked."
 end
 
 get '/purchase_confirmation' do
   "Thank you for your purchase."
 end
+
+
 
 
