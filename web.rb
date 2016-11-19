@@ -74,14 +74,29 @@ get '/connect' do
   p scope
   p auth_code 
 
-  #creates account with Stripe 
+  #creates account with Stripe or returns error to Sinatra 
+  begin
+    response = RestClient.post 'https://connect.stripe.com/oauth/token', {
+      client_secret: $PRIVATE_TEST_KEY,
+      code: auth_code, 
+      grant_type: 'authorization_code'}
 
-  response = RestClient.post 'https://connect.stripe.com/oauth/token', {
-    client_secret: $PRIVATE_TEST_KEY,
-    code: auth_code, 
-    grant_type: 'authorization_code'}
-  p response.to_s
-  "Jen this totally worked."
+    p response.to_s
+    response = JSON.parse(response.to_s)
+    p response.class
+    p response.to_s
+    "Account #{response['stripe_user_id']} created"
+  rescue => e 
+    
+    e = JSON.parse(e.response.to_s)
+    p e.class
+
+    #p e.response.class 
+    #e = JSON.parse(e.to_s)
+    #p e.class
+    #returns error string
+    "#{e['error']}: #{e['error_description']}"
+  end 
 end
 
 get '/purchase_confirmation' do
