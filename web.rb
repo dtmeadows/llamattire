@@ -3,6 +3,7 @@ require 'stripe'
 require 'sqlite3'
 require 'json'
 require 'rest-client'
+require 'pry'
 
 require_relative 'stripe_keys'
 
@@ -67,42 +68,74 @@ get '/connect' do
   scope = params[:scope]
   auth_code = params[:code]
 
-  #stores params unnecessarily in a db 
-
-  db = SQLite3::Database.new("stripe_store.db")
-  db.execute("Insert INTO Accounts (authorization_code) VALUES (?)", [auth_code])
   p scope
-  p auth_code 
+  p auth_code
 
   #creates account with Stripe or returns error to Sinatra 
+
   begin
     response = RestClient.post 'https://connect.stripe.com/oauth/token', {
       client_secret: $PRIVATE_TEST_KEY,
       code: auth_code, 
       grant_type: 'authorization_code'}
+ 
 
-    p response.to_s
     response = JSON.parse(response.to_s)
-    p response.class
-    p response.to_s
+
+
     "Account #{response['stripe_user_id']} created"
   rescue => e 
-    
-    e = JSON.parse(e.response.to_s)
-    p e.class
+    if e.class.to_s == 'RestClient::BadRequest'
+      e = JSON.parse(e.response.to_s)
+      p e.class
+      "#{e['error']}: #{e['error_description']}"
+    else
+      p e.class
+      p e.to_s
+      p e.cause 
+      p e.message
+      p e.backtrace
 
-    #p e.response.class 
-    #e = JSON.parse(e.to_s)
-    #p e.class
-    #returns error string
-    "#{e['error']}: #{e['error_description']}"
+    end
   end 
+
+  db = SQLite3::Database.new("stripe_store.db")
+=begin
+  db.execute("INSERT INTO accounts (
+      authorization_code,
+      token_type,
+      stripe_publishable_key,
+      scope,
+      livemode,
+      stripe_user_id,
+      refresh_token,
+      access_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
+      auth_code, 
+      response['token_type'], 
+      response['stripe_publishable_key'], 
+      response['scope'],
+      response['livemode'],
+      response['stripe_user_id'],
+      response['refresh_token'],
+      response['access_token']
+      ])
+=end
+  # TO DO: Get all values inserted into database and solve falseclass error 
+  db.execute("INSERT INTO accounts (
+      stripe_publishable_key,
+      scope
+      ) 
+      VALUES (?,?)", [
+      response['stripe_publishable_key'], 
+      response['scope']
+      ])
+
+  "Account #{response['stripe_user_id']} created"
 end
 
 get '/purchase_confirmation' do
   "Thank you for your purchase."
 end
-
 
 
 
