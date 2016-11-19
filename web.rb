@@ -103,7 +103,9 @@ get '/connect' do
       ])
     
     puts "Account #{response['stripe_user_id']} created." 
-    
+
+    redirect "/account_confirmation?acct_id=#{response['stripe_user_id']}"
+
   #error handling for restclient and other errors (not really)
   rescue => e 
     if e.class.to_s == 'RestClient::BadRequest'
@@ -124,6 +126,18 @@ end
 get '/purchase_confirmation' do
   "Thank you for your purchase."
 end
+
+get '/account_confirmation' do 
+
+  #full confirmation page
+
+  db = SQLite3::Database.new("stripe_store.db")
+  db.results_as_hash = true
+  @account = db.execute("SELECT * from accounts where stripe_user_id = ?", params[:acct_id]).last
+
+  erb :account_confirmation
+end
+
 
 
 
