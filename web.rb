@@ -66,10 +66,6 @@ get '/connect' do
   scope = params[:scope]
   auth_code = params[:code]
 
-  p scope
-  p auth_code
-
-
   #creates account with Stripe or returns error to Sinatra 
 
   begin
@@ -117,8 +113,6 @@ get '/connect' do
       p e.cause 
       p e.message
       p e.backtrace
-
-
     end
   end 
 end
