@@ -1,8 +1,11 @@
-require_relative 'stripe_keys'
 require 'sinatra'
 require 'stripe'
 require 'sqlite3'
 require 'json'
+require 'rest-client'
+require 'pry'
+
+require_relative 'stripe_keys'
 
 Stripe.api_key = $PRIVATE_TEST_KEY
 
@@ -28,9 +31,7 @@ post '/purchase' do
   db = SQLite3::Database.new("stripe_store.db")
   db.results_as_hash = true
   product = db.execute("SELECT * from PRODUCTS where id=?", product_id).last
-  p product
   price = product['amount']
-  p price 
   # create the charge
   begin
     charge = Stripe::Charge.create(
@@ -39,7 +40,6 @@ post '/purchase' do
       :source => token,
       :description => customer_email
     )
-    p charge
   rescue Stripe::CardError => e 
     body = e.json_body
     err = body[:error]
@@ -57,8 +57,7 @@ post '/purchase' do
     "Charge declined"
   end
 
-<<<<<<< HEAD
-=======
+
 end 
 
 #endpoint for Stripe Connect Oauth
@@ -69,6 +68,7 @@ get '/connect' do
 
   p scope
   p auth_code
+
 
   #creates account with Stripe or returns error to Sinatra 
 
@@ -117,10 +117,27 @@ get '/connect' do
       p e.cause 
       p e.message
       p e.backtrace
->>>>>>> parent of ea61850... Removed debugging logs
 
+
+    end
+  end 
 end
 
 get '/purchase_confirmation' do
   "Thank you for your purchase."
 end
+
+get '/account_confirmation' do 
+
+  #full confirmation page
+
+  db = SQLite3::Database.new("stripe_store.db")
+  db.results_as_hash = true
+  @account = db.execute("SELECT * from accounts where stripe_user_id = ?", params[:acct_id]).last
+
+  erb :account_confirmation
+end
+
+
+
+
