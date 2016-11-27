@@ -31,9 +31,7 @@ post '/purchase' do
   db = SQLite3::Database.new("stripe_store.db")
   db.results_as_hash = true
   product = db.execute("SELECT * from PRODUCTS where id=?", product_id).last
-  p product
   price = product['amount']
-  p price 
   # create the charge
   begin
     charge = Stripe::Charge.create(
@@ -42,7 +40,6 @@ post '/purchase' do
       :source => token,
       :description => customer_email
     )
-    p charge
   rescue Stripe::CardError => e 
     body = e.json_body
     err = body[:error]
@@ -67,9 +64,6 @@ get '/connect' do
   #gets two params from Stripe OAUTH
   scope = params[:scope]
   auth_code = params[:code]
-
-  p scope
-  p auth_code
 
   #creates account with Stripe or returns error to Sinatra 
 
