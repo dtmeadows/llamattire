@@ -1,0 +1,23 @@
+<!DOCTYPE html>	
+<html>
+<head>
+	<title>LlamAttire Franchisement Succeeded 🎩</title>
+</head>
+<body>
+
+<h1>
+	Thanks for signing up with LlamaAttire: where the finest of the fine get their attire. 
+</h1>
+
+<div>
+    <ul>
+
+  		<li>Your account ID: <%= @account['stripe_user_id'] %></li>
+  		<li>Your Stripe publishable key: <%= @account['stripe_publishable_key'] %></li>
+  		<li>The access scope you've granted me by pressing that blue button: <%= @account['scope'] %></li>
+  		<li>Can I actually make real moneys? T/F: <%= @account['livemode'] %></li>
+  		<li>This is a refresh token. I don't really know what it does: <%= @account['refresh_token'] %></li>
+  		<li>This really shouldn't be published like this: <%= @account['access_token'] %></li>
+
+    </ul>
+</div>
