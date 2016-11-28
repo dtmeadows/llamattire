@@ -3,13 +3,15 @@ $(document).ready(
 
 	console.log("loaded and ready!")
 
-	$('#welcome-message').fadeIn()
+	setTimeout(function (){
+		$('#welcome-rapper').slideDown()
+	}, 500);
 
 	$('#welcome-message').click(
 		function() {
 		$(this).hide();
 		$('#welcome-rapper').slideUp();
-	});
+	});	
 
 	$('#secret-button').click(
 		function() {
@@ -35,5 +37,7 @@ $(document).ready(
 	$('#cart-total').text(sum)
  
 	$( '.product-checks' ).on( "click", sumCart );
+
 });
+
 

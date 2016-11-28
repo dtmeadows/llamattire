@@ -25,7 +25,6 @@ h1, h2, h3 {
 	font-style: italic;
 	padding: 20px;
 	margin: 10px;
-	;
 
 }
 
@@ -70,11 +69,12 @@ ol, ul {
     display: block;
     font-size: 16px;
     margin: auto;
-    cursor: crosshair;
+    cursor: pointer;
 }
 
 #welcome-rapper {
-	height: 100px;
+	display: none;
+	margin: auto;
 }
 
 #secret-button {
