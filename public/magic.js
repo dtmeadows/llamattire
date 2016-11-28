@@ -18,13 +18,6 @@ $(document).ready(
 		}
 		)
 
-
-
-	var countCart = function() {
-  		var n = $( "input:checked" ).length;
- 			$('#cart-total').text( n + (n === 1 ? " is" : " are") + " checked!" );
- 		};
-
  	var sum;
 
 	var sumCart = function() {
