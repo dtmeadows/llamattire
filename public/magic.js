@@ -36,7 +36,8 @@ $(document).ready(
 		if (sum > 0) { 
 			$('#cart-total').text("Your cart total is $" + sum/100); 
 			$('#checkout-button').slideDown();
-			$('#stripe-checkout').attr("data-label","CART TOTAL")
+			$('#stripe-checkout').attr("data-amount", sum)
+			$('.stripe-button-el span').text("Pay Cart: $" + sum/100)
   			}
 		else {
 			$('#cart-total').text("Cart is currently empty. Add some items!")
