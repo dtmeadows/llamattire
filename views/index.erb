@@ -31,7 +31,7 @@ Navigation
 	<p><a href="form.html"> Form Testing</a></p>
 	
 <h2>Purchase</h2>
-		    <label>
+		    
 		      <span>Currently available products:</span>
 	      	  <% @products.each do |product| %>
 			      <p><input type="checkbox" class="product-checks" id="product_<%= product['id'] %>" value="<%= product['id'] %>" data-amount=<%= product['amount'].to_i %>>
@@ -42,7 +42,7 @@ Navigation
 			      </p>
 
 		       <% end %> 
-		    </label>
+		    
 
 		<span id="cart-total">Cart is currently empty. Add some items!</span>
 
