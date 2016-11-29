@@ -37,7 +37,7 @@ Navigation
 
 		 <div class="form-row">
 		    <label>
-		      <span>Email</span>
+		      <span>Currently available products:</span>
 	      	  <% @products.each do |product| %>
 			      <p><input type="checkbox" class="product-checks" id="product_<%= product['id'] %>" value="<%= product['id'] %>" data-amount=<%= product['amount'].to_i %>>
 			      <label class="product-labels" for="product_<%= product['id'] %>">
@@ -49,22 +49,23 @@ Navigation
 		       <% end %> 
 		    </label>
 		  </div>
-		<span id="cart-total">HELLO</span>
-  	  	<input type="submit" class="submit" value="Submit Payment">
+		<span id="cart-total">Cart is currently empty. Add some items!</span>
+  	  	<!--<input type="submit" class="submit" value="Submit Payment">-->
 
 
-  	  	
-  	<form action="/purchase" method="POST">
-	  <script
-	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-	    data-key="pk_test_zdQoXfpUzWPgsEn8v4z0wN5L"
-	    data-image="http://images5.fanpop.com/image/photos/30700000/Calvin-calvin-and-hobbes-30770693-200-200.png"
-	    data-name="Stripe.com"
-	    data-description="My test thang"
-	    data-amount="2000"
-	    data-locale="auto">
-	  </script>
-</form>
+  	  	<div id="checkout-button">
+		  	<form  action="/purchase" method="POST">
+			  <script
+			    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			    data-key="pk_test_zdQoXfpUzWPgsEn8v4z0wN5L"
+			    data-image="http://images5.fanpop.com/image/photos/30700000/Calvin-calvin-and-hobbes-30770693-200-200.png"
+			    data-name="Stripe.com"
+			    data-description="My test thang"
+			    data-amount="2000"
+			    data-locale="auto">
+			  </script>
+			</form>
+		</div>	
 	</form>
 <h2>
 	External Resources

@@ -15,7 +15,6 @@ section.bod {
 
 .product-labels{
 	color: #241B04;
-	background-color: yellow;
 }
 
 h1, h2, h3 {
@@ -90,6 +89,9 @@ ol, ul {
 	margin: auto;
 }
 
+#checkout-button {
+	display: none;
+}
 
 
 
