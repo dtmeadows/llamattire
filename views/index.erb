@@ -31,11 +31,6 @@ Navigation
 	<p><a href="form.html"> Form Testing</a></p>
 	
 <h2>Purchase</h2>
-	<form action="/purchase" method="POST" id="payment-form">
-		 
-		 <span class="payment-errors" color="red"></span>
-
-		 <div class="form-row">
 		    <label>
 		      <span>Currently available products:</span>
 	      	  <% @products.each do |product| %>
@@ -48,9 +43,8 @@ Navigation
 
 		       <% end %> 
 		    </label>
-		  </div>
+
 		<span id="cart-total">Cart is currently empty. Add some items!</span>
-  	  	<!--<input type="submit" class="submit" value="Submit Payment">-->
 
 
   	  	<div id="checkout-button">
@@ -66,7 +60,6 @@ Navigation
 			  </script>
 			</form>
 		</div>	
-	</form>
 <h2>
 	External Resources
 </h2>
