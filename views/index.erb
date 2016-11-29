@@ -50,13 +50,15 @@ Navigation
   	  	<div id="checkout-button">
 		  	<form  action="/purchase" method="POST">
 			  <script
-			    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+			    id="stripe-checkout" src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 			    data-key="pk_test_zdQoXfpUzWPgsEn8v4z0wN5L"
 			    data-image="http://images5.fanpop.com/image/photos/30700000/Calvin-calvin-and-hobbes-30770693-200-200.png"
 			    data-name="Stripe.com"
 			    data-description="My test thang"
 			    data-amount="2000"
-			    data-locale="auto">
+			    data-locale="auto"
+			    data-panel-label="Llama says to pay"
+			    data-label="Drop some dough.">
 			  </script>
 			</form>
 		</div>	
