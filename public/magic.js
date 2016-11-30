@@ -75,18 +75,19 @@ $(document).ready(
 		amount = parseFloat(amount);
 
 		console.log("Amount loaded from form... " + amount)
-		/*if (isNaN(amount)) {
-	 		$('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
+
+		if (isNaN(amount)) {
+	 		$('#cart-total').text("$" + amount/100 + " is invalid. Don't mess with the JS.");
 		}
-		else if (amount < 5.00) {
-			$('#error_explanation').html('<p>Donation amount must be at least $5.</p>');
+		else if (amount/100 < 0.50) {
+			$('#cart-total').text("$" + amount/100 + " is invalid. Don't mess with the JS.");
 		}
-		else {*/
+		else {
 			amount = amount; // Needs to be an integer!
 	    	handler.open({
 	    	amount: Math.round(amount)
 	    })
-		/*}*/
+		}
 	});
 
 });
