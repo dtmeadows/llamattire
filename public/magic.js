@@ -51,6 +51,43 @@ $(document).ready(
  
 	$( '.product-checks' ).on( "click", sumCart );
 
+	/* script moved from html*/
+
+	var handler = StripeCheckout.configure({
+	  key: 'pk_test_zdQoXfpUzWPgsEn8v4z0wN5L',
+	  locale: 'auto',
+	  name: 'LlamaAttire',
+	  description: 'My test thang',
+	  token: function(token) {
+	    $('input#stripeToken').val(token.id);
+	    $('#checkout-form').submit();
+	  }
+	});
+
+	$('#payment-button').on('click', function(e) {
+
+		e.preventDefault();
+
+		/*$('#error_explanation').html('');*/
+
+		var amount = $('#checkout-form').attr("data-amount"); 
+
+		amount = parseFloat(amount);
+
+		/*if (isNaN(amount)) {
+	 		$('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
+		}
+		else if (amount < 5.00) {
+			$('#error_explanation').html('<p>Donation amount must be at least $5.</p>');
+		}
+		else {*/
+			amount = amount; // Needs to be an integer!
+	    	handler.open({
+	    	amount: Math.round(amount)
+	    })
+		/*}*/
+	});
+
 });
 
 
