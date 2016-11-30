@@ -70,10 +70,11 @@ $(document).ready(
 
 		/*$('#error_explanation').html('');*/
 
-		var amount = $('#checkout-form').attr("data-amount"); 
+		var amount = sum
 
 		amount = parseFloat(amount);
 
+		console.log("Amount loaded from form... " + amount)
 		/*if (isNaN(amount)) {
 	 		$('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
 		}
